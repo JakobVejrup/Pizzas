@@ -1,24 +1,36 @@
 ﻿@model List<Pizzas.Models.Dishes>
+
 @{
     ViewData["Title"] = "MenuIndex";
-
 }
 
-<div class=" container">
-    <div class="row">
-    @foreach(var item in Model)
-    {
-        <div class="col-6">
-            <div class="d-flex justify-content-center">
-                <h4>@item.Title</h4>
-            </div>
-                <div class="d-flex justify-content-center">
-                <img src="@item.ImageURL" style="width: 70%" />
-            </div>
-                <div class="d-flex justify-content-center">
-                @item.Price.ToString("N2") Dollars
-            </div>
+<div class="container">
+    <div class="row mb-3">
+        <div class="col-12 d-flex justify-content-end">
+            <a asp-action="Create" class="btn btn-primary">Create New Pizza</a>
         </div>
-    }
+    </div>
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-6 mb-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h4 class="card-title">@item.Title</h4>
+                        <img src="@item.ImageURL" style="width: 70%" class="card-img-top mb-3" />
+                        <p class="card-text">@item.Price.ToString("N2") Dollars</p>
+                        <div class="d-flex justify-content-center">
+                            <a class="btn btn-info me-2" asp-action="Details" asp-route-id="@item.Id">View Pizza</a>
+                            <a class="btn btn-warning me-2" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                            <form asp-action="Delete" asp-route-id="@item.Id" method="post" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this pizza?');">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
     </div>
 </div>
+
