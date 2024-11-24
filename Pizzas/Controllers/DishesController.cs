@@ -19,13 +19,13 @@ namespace Pizzas.Controllers
             _context = context;
         }
 
-        // GET: Dishes
+        //Get Dishes
         public async Task<IActionResult> Index()
         {
             return View(await _context.Dishes.ToListAsync());
         }
 
-        // GET: Dishes/Details/5
+        //Get dishes details
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -43,15 +43,13 @@ namespace Pizzas.Controllers
             return View(dishes);
         }
 
-        // GET: Dishes/Create
+        //Get Dishes Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Dishes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //Post Dishes Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Title,ImageURL,Price")] Dishes dishes)
@@ -65,7 +63,7 @@ namespace Pizzas.Controllers
             return View(dishes);
         }
 
-        // GET: Dishes/Edit/5
+        //Get Dishes Edit 5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -81,9 +79,8 @@ namespace Pizzas.Controllers
             return View(dishes);
         }
 
-        // POST: Dishes/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //Post Dishes Edit
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ImageURL,Price")] Dishes dishes)
@@ -116,7 +113,7 @@ namespace Pizzas.Controllers
             return View(dishes);
         }
 
-        // GET: Dishes/Delete/5
+        //Get Dishes Delete
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -134,7 +131,7 @@ namespace Pizzas.Controllers
             return View(dishes);
         }
 
-        // POST: Dishes/Delete/5
+        //Post Dishes Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
